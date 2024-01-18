@@ -1,0 +1,19 @@
+<div class="px-8">
+  <h3 class="text-xl">Explore Rooms</h3>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 m-4 transition-all duration-500">
+    <div *ngFor="let room of rooms" class=" rounded-md p-2 border-dashed border-2 relative group" [ngClass]="{'bg-red-100' : room.isAvailable == false}">
+      <h4><span class="font-semibold font-monte">Room :</span> {{room.id}}</h4>
+      <h4><span class="font-semibold font-monte">Room Type : </span>{{room.roomType}}</h4>
+      <h4><span class="font-semibold font-monte">Room Capacity : </span>{{room.maxOccupancy}}</h4>
+      <h4 class="text-blue-500"><span class="font-semibold font-monte text-black">Price Per Night : </span>{{room.pricePerNight | currency: "EGP"}}</h4>
+      <div class=" hidden  group-hover:flex flex-col gap-2 items-center justify-center absolute h-full w-full bg-white rounded-md top-0 left-0 " [ngClass]="{'bg-red-400' : room.isAvailable == false}">
+        <span>Room : {{room.id}}</span>
+        <span *ngIf="room.isAvailable == false; else reserveButton">Not available right now</span>
+        <ng-template #reserveButton>
+          <button class="bg-blue-400 px-2 py-1 rounded-md text-white font-bold font-OpenSans">Reserve</button>
+        </ng-template>
+        <a  href="{{'Room/'+ room.id}}" class="bg-blue-400 px-2 py-1 rounded-md text-white font-bold font-OpenSans">Details</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<h1 class="text-2xl font-monte font-bold italic">Reservations</h1>
+
+<div *ngIf="loadingStatus; else tableData">isLoading : {{loadingStatus}}</div>
+<ng-template #tableData>
+
+</ng-template>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id" >
+    <th mat-header-cell *matHeaderCellDef >Reservation Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="roomId">
+    <th mat-header-cell *matHeaderCellDef> Room Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.roomId}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="totalCost"  >
+    <th mat-header-cell *matHeaderCellDef > Total Cost </th>
+    <td mat-cell *matCellDef="let element"> {{element.totalCost}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="guestsNum">
+    <th mat-header-cell *matHeaderCellDef> Guests </th>
+    <td mat-cell *matCellDef="let element"> {{element.guestsNum}} </td>
+  </ng-container>
+  <ng-container matColumnDef="checkInDate">
+    <th mat-header-cell *matHeaderCellDef> Check In </th>
+    <td mat-cell *matCellDef="let element"> {{element.checkInDate | date : "dd/MM/YYYY"}} </td>
+  </ng-container>
+  <ng-container matColumnDef="checkOutDate">
+    <th mat-header-cell *matHeaderCellDef> Check Out </th>
+    <td mat-cell *matCellDef="let element"> {{element.checkOutDate| date : "dd/MM/YYYY"}} </td>
+  </ng-container>
+  <ng-container matColumnDef="isPaid">
+    <th mat-header-cell *matHeaderCellDef> Paid </th>
+    <td mat-cell *matCellDef="let element"> {{element.isPaid}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<div *ngFor="let res of reservationList" class="m-2 p-2 rounded-md border-dashed border-2 border-green-500">
+  <div class="flex items-center justify-around gap-5"><p>Reservation ID : {{res.id}}</p>
+    <p>Room Number : {{res.roomId}}</p>
+  </div>
+  <div class="h-[1px] w-full bg-gray-300"></div>
+   <div class="flex items-center justify-around gap-5 ">
+     <p>Total Cost : {{res.totalCost}}</p>
+     <p>Number of guests : {{res.guestsNum}}</p>
+    </div>
+  <div class="h-[1px] w-full bg-gray-300"></div>
+
+  <div class="flex items-center justify-around gap-5">
+    <p>Check In Date : {{res.checkInDate| date: "dd/MM/YYYY"}}</p>
+    <p>Check Out Date : {{res.checkOutDate| date: "dd/MM/YYYY"}}</p>
+  </div>
+  <p>{{res.isPaid ? "Paid" : "Is Not Paid"}}</p>
+</div>

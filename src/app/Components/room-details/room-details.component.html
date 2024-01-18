@@ -1,0 +1,27 @@
+
+<div>
+  <h2 class="text-xl font-bold italic font-monte">Room No. #{{roomId}}</h2>
+  <p class="text-lg">Room Type : <span class="font-semibold text-orange-500">{{roomDetails?.roomType}}</span></p>
+  <p class="text-lg">Room Max Capacity : <span class="font-semibold text-orange-500">{{roomDetails?.maxOccupancy}}</span></p>
+  <p class="text-lg">Room Price Per Night : <span class="font-semibold text-blue-500">{{roomDetails?.pricePerNight | currency: "EGP"}}</span></p>
+  <p class="text-lg">Room Availabe : <span class="font-semibold text-green-500" [ngClass]="{'text-red-600' : roomDetails?.isAvailable == false}">{{roomDetails?.isAvailable == true ?"Available": "Is Not Available"}}</span></p>
+  <!-- <p>reviews count : {{reviews.length}}</p> -->
+
+
+
+      <div class="flex items-center justify-between" [ngClass]="{'hidden' : reviews?.length == 0}">
+        <h3 class="text-2xl font-bold">User Reviews</h3>
+        <div>Average rating : <span class="text-xl font-bold text-orange-600">{{averageRating}}</span></div>
+      </div>
+      <div *ngFor="let review of reviews; index as i ">
+        <div class="m-2 p-2 bg-gray-200 rounded-md">
+          <div class="">
+            <h4 class="font-bold font-monte italic">Review No. #{{i+1}}</h4>
+            <div>Rating : <span class="text-green-800 font-bold ">{{review.rating}}</span></div>
+            <div>Comment : {{review.comment == null ? "No Comment...": review.comment}}</div>
+
+          </div>
+        </div>
+</div>
+
+

@@ -1,0 +1,20 @@
+<div class="w-2/4 mx-auto">
+  <h2 class="text-2xl mb-5 text-center">New Room</h2>
+<form class="text-black" [formGroup]="roomForm" (submit)="addRoom()">
+  <div class="mb-2">
+    <label class="block text-sm font-medium text-gray-600">Room Type</label>
+    <input type="text" id="roomType" name="roomType" formControlName="roomType" class="mt-1 p-2 border rounded-md w-full">
+  </div>
+  <div class="mb-2">
+    <label class="block text-sm font-medium text-gray-600">Max Capacity</label>
+    <input type="number" id="maxOccupancy" name="maxOccupancy" formControlName="maxOccupancy" class="mt-1 p-2 border rounded-md w-full">
+  </div>
+  <div class="mb-2">
+    <label class="block text-sm font-medium text-gray-600">Price Per Night</label>
+    <input type="number" id="pricePerNight" name="pricePerNight" formControlName="pricePerNight" class="mt-1 p-2 border rounded-md w-full">
+  </div>
+    <div class="flex items-center justify-center">
+      <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md disabled:bg-gray-500">Add</button>
+    </div>
+</form>
+</div>
